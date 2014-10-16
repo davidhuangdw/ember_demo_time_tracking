@@ -1,0 +1,11 @@
+= simple_form_for(@activity) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :begin_at, as: :datetime_picker
+    = f.input :end_at, as: :datetime_picker
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

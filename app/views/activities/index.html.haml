@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_activity_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Activity
+  %h1 Listing activities
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Title
+        %th Begin at
+        %th End at
+        %th Description
+        %th
+        %th
+        %th
+
+    %tbody
+      - @activities.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.begin_at
+          %td= activity.end_at
+          %td= activity.description
+          %td= link_to 'Show', activity
+          %td= link_to 'Edit', edit_activity_path(activity)
+          %td= link_to 'Destroy', activity, :data => { confirm: 'Are you sure?' }, :method => :delete
