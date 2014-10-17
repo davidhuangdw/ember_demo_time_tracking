@@ -3,24 +3,23 @@
     h1
       = prettyDate
       span.pull-right
-        button.btn.btn-info click=today
+        button.btn.btn-info click="transToDate"
           .fa.fa-anchor.bigger-font
-        button.btn.btn-warning click=prev_day
+        button.btn.btn-warning click="transToDate prev_day"
           .fa.fa-arrow-circle-left.bigger-font
-        button.btn.btn-warning click=next_day
+        button.btn.btn-warning click="transToDate next_day"
           .fa.fa-arrow-circle-right.bigger-font
     table.table.table-stripe
       tr
         th Title
         th Drtn
-        th Date
         th Begin
         th Detail
       each itemController='activity'
         tr
           td= title
           td= prettyDuration
-          td= date
           td= beginTime
           td= details
   .col-sm-4
+    = outlet

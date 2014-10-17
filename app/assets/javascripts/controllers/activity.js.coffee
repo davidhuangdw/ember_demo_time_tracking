@@ -15,12 +15,13 @@ Track.ActivityController = Ember.ObjectController.extend
   ).property('duration')
 
   date: (->
-    moment(@get 'beginAt').format('MM:DD')
+    moment(@get 'beginAt').format('MM-DD')
   ).property('beginAt')
   beginTime: (->
     moment(@get 'beginAt').format('hh:mm')
   ).property('beginAt')
   details: (->
+    limit=40
     desc = @get('description')
-    if desc.length>40 then desc[0...40]+"..." else desc
+    if desc.length>limit then desc[0...limit]+"..." else desc
   ).property('description')
