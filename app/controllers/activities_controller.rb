@@ -3,7 +3,15 @@ class ActivitiesController < ApplicationController
   respond_to :html,:json
 
   def index
-    @activities = Activity.all.order('begin_at DESC').limit(30)
+    today = DateTime.now
+    from = to_date(params[:from]) || today.yesterday
+    to = to_date(params[:to]) || today
+    @activities = Activity.where('begin_at >= ? and begin_at < ?', from, to)
+    puts "-------"
+    p from
+    p to
+    p @activities
+    puts "-------"
     respond_with(@activities)
   end
   def for_day
@@ -52,5 +60,9 @@ class ActivitiesController < ApplicationController
 
     def date_params
       %w{year month day}.map{|w| params[w]}
+    end
+    def to_date(str)
+      # str
+      str ? DateTime.parse(str) : str
     end
 end

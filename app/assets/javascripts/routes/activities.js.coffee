@@ -1,2 +1,5 @@
 Track.ActivitiesRoute = Ember.Route.extend
-  model: -> @store.findAll 'activity'
+  beforeModel: ->
+    @transitionTo "/activities"+moment().format("/YYYY/MM/DD")
+
+#  model: -> @store.findAll 'activity'

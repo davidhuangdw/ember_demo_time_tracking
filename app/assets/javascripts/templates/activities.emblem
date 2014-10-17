@@ -1,15 +1,26 @@
-.row: .col-sm-8
-  table.table.table-stripe
-    tr
-      th Title
-      th Duration
-      th Date
-      th Begin
-      th Details
-    each itemController='activity'
+.row
+  .col-sm-8
+    h1
+      = prettyDate
+      span.pull-right
+        button.btn.btn-info click=today
+          .fa.fa-anchor.bigger-font
+        button.btn.btn-warning click=prev_day
+          .fa.fa-arrow-circle-left.bigger-font
+        button.btn.btn-warning click=next_day
+          .fa.fa-arrow-circle-right.bigger-font
+    table.table.table-stripe
       tr
-        td= title
-        td= prettyDuration
-        td= date
-        td= beginTime
-        th= details
+        th Title
+        th Drtn
+        th Date
+        th Begin
+        th Detail
+      each itemController='activity'
+        tr
+          td= title
+          td= prettyDuration
+          td= date
+          td= beginTime
+          td= details
+  .col-sm-4

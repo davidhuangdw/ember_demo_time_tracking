@@ -6,4 +6,6 @@ class Activity < ActiveRecord::Base
       errors.add(:end_at, "begin should before end")
     end
   end
+
+  default_scope ->{ order('begin_at') }
 end

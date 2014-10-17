@@ -6,4 +6,4 @@ Track.Activity = DS.Model.extend
   endAt: DS.attr 'date'
   description: DS.attr 'string'
 
-  duration: (-> @get('beginAt'))
+  duration: (-> @get('endAt')- @get('beginAt')).property('beginAt', 'endAt')
