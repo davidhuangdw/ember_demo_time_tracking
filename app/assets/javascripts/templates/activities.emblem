@@ -6,10 +6,10 @@
       th Date
       th Begin
       th Details
-    each
+    each itemController='activity'
       tr
         td= title
-        td= duration
-        td= beginAt
-        td= endAt
-        th= description
+        td= prettyDuration
+        td= date
+        td= beginTime
+        th= details
