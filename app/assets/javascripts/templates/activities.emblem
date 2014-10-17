@@ -1,0 +1,15 @@
+.row: .col-sm-8
+  table.table.table-stripe
+    tr
+      th Title
+      th Duration
+      th Date
+      th Begin
+      th Details
+    each
+      tr
+        td= title
+        td= duration
+        td= beginAt
+        td= endAt
+        th= description

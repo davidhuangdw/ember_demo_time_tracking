@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :activities
+  resources :activities do
+    collection do
+      get ':year/:month/:day' => "activities#for_day"
+    end
+  end
 
   get 'home/index'
   root to:'home#index'

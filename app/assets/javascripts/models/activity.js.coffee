@@ -5,3 +5,5 @@ Track.Activity = DS.Model.extend
   beginAt: DS.attr 'date'
   endAt: DS.attr 'date'
   description: DS.attr 'string'
+
+  duration: (-> @get('beginAt'))

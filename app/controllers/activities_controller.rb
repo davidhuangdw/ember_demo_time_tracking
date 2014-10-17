@@ -3,7 +3,12 @@ class ActivitiesController < ApplicationController
   respond_to :html,:json
 
   def index
-    @activities = Activity.all
+    @activities = Activity.all.order('begin_at DESC').limit(30)
+    respond_with(@activities)
+  end
+  def for_day
+    date = Time.new(*date_params)
+    @activities = Activity.where('begin_at >= ? and begin_at < ?', date, date.tomorrow)
     respond_with(@activities)
   end
 
@@ -35,6 +40,7 @@ class ActivitiesController < ApplicationController
     respond_with(@activity)
   end
 
+
   private
     def set_activity
       @activity = Activity.find(params[:id])
@@ -42,5 +48,9 @@ class ActivitiesController < ApplicationController
 
     def activity_params
       params.require(:activity).permit(:title, :begin_at, :end_at, :description)
+    end
+
+    def date_params
+      %w{year month day}.map{|w| params[w]}
     end
 end
