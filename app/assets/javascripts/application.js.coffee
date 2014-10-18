@@ -10,9 +10,11 @@
 #= require_self
 #= require track
 
-$(document).on 'ready page:change', ->
-  $('.datepicker').datetimepicker pickSeconds:false
+#$(document).on 'ready page:change', ->
+#  jQuery('.datepicker').datetimepicker pickSeconds:false
 
 # for more details see: http://emberjs.com/guides/application/
-window.Track = Ember.Application.create()
+window.Track = Ember.Application.create
+  LOG_TRANSITIONS: true
+
 

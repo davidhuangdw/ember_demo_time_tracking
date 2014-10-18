@@ -1,4 +1,4 @@
-Track.ActivitiesRoute = Ember.Route.extend
+Track.IndexRoute = Ember.Route.extend
   beforeModel: ->
     @transitionTo "/activities"+moment().format("/YYYY/MM/DD")
 

@@ -1,13 +1,13 @@
 .row
   .col-sm-8
-    h1
-      = prettyDate
+    h2
+      = showDate
       span.pull-right
-        button.btn.btn-info click="transToDate"
+        button.btn.btn-info click="go_today"
           .fa.fa-anchor.bigger-font
-        button.btn.btn-warning click="transToDate prev_day"
+        button.btn.btn-warning click="go_prev_day"
           .fa.fa-arrow-circle-left.bigger-font
-        button.btn.btn-warning click="transToDate next_day"
+        button.btn.btn-warning click="go_next_day"
           .fa.fa-arrow-circle-right.bigger-font
     table.table.table-stripe
       tr
@@ -15,11 +15,19 @@
         th Drtn
         th Begin
         th Detail
+        th Edit
       each itemController='activity'
         tr
-          td= title
-          td= prettyDuration
+          td
+            = title
+          td= durationTime
           td= beginTime
-          td= details
+          td
+            = details
+          td
+            =link-to 'activity' this class='trans-btn'
+              .fa.fa-pencil-square.larger-font
+            a href='#' click=delete class="danger-font trans-btn"
+              .fa.fa-trash.larger-font
   .col-sm-4
-    = outlet
+    outlet

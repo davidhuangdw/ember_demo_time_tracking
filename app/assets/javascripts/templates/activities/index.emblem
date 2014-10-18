@@ -1,0 +1,2 @@
+h2
+  =link-to 'activities.new' class="btn btn-primary" | new

@@ -1,0 +1,10 @@
+h2
+  | New Activity
+  span.pull-right
+    button.btn.btn-success.btn-sm click=create
+      .fa.fa-check
+    button.btn.btn-danger.btn-sm click=cancel
+      .fa.fa-trash-o
+
+= view 'activity.form'
+

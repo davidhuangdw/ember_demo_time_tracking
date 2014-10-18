@@ -2,3 +2,5 @@
 
 Track.ActivitiesView = Ember.View.extend
   templateName: 'activities'
+
+
