@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_type_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Type
+  %h1 Listing types
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Color
+        %th
+        %th
+        %th
+
+    %tbody
+      - @types.each do |type|
+        %tr
+          %td= type.name
+          %td= type.color
+          %td= link_to 'Show', type
+          %td= link_to 'Edit', edit_type_path(type)
+          %td= link_to 'Destroy', type, :data => { confirm: 'Are you sure?' }, :method => :delete

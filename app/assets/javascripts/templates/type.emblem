@@ -1,0 +1,12 @@
+h2
+  | Edit
+  span.pull-right
+    if isDirty
+      button.btn.btn-success.btn-sm click=save
+        .fa.fa-pencil-square.bigger-font
+    button.btn.btn-info.btn-sm click=cancel
+      .fa.fa-rotate-left.bigger-font
+
+= partial 'types/form'
+button.btn.btn-danger.btn-sm.pull-right click=delete
+  .fa.fa-trash-o.bigger-font

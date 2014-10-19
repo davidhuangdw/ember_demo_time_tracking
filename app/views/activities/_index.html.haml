@@ -9,6 +9,7 @@
     %thead
       %tr
         %th Title
+        %th Type
         %th Begin at
         %th End at
         %th Description
@@ -20,6 +21,7 @@
       - @activities.each do |activity|
         %tr
           %td= activity.title
+          %td= activity.type && activity.type.name
           %td= activity.begin_at
           %td= activity.end_at
           %td= activity.description

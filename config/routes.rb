@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :types
+
   devise_for :users
   resources :activities do
     collection do
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'home/index'
+  get '/app' => 'home#app'
   root to:'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

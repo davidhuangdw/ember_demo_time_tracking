@@ -1,0 +1,19 @@
+.row
+  .col-sm-8
+    h2 Types
+    table.table.table-hover
+      tr
+        th Name
+        th Color
+        th Edit
+      each itemController='type'
+        tr
+          td= name
+          td= color
+          td
+            =link-to 'type' this class='trans-btn'
+              .fa.fa-pencil-square.larger-font
+            a href='#' click=delete class="danger-font trans-btn"
+              .fa.fa-trash.larger-font
+  .col-sm-4
+    outlet

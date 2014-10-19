@@ -3,6 +3,7 @@
 
   .form-inputs
     = f.input :title
+    = f.association :type
     = f.input :begin_at, as: :datetime_picker
     = f.input :end_at, as: :datetime_picker
     = f.input :description

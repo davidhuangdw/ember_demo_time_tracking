@@ -1,0 +1,12 @@
+if errorMessage
+  .alert.alert-danger= errorMessage
+
+.form-group
+  .input-group
+    span.input-group-addon Name
+    = input value=name class="form-control"
+
+.form-group
+  .input-group
+    span.input-group-addon Color
+    = input value=fields.beginTime  class="form-control"

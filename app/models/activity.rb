@@ -1,4 +1,6 @@
 class Activity < ActiveRecord::Base
+  belongs_to :type
+
   validates_presence_of :title, :begin_at, :end_at
   validate do
     unless begin_at && end_at && begin_at < end_at
