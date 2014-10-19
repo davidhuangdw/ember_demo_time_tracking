@@ -5,4 +5,4 @@ Track.ActivityFormView = Ember.View.extend
       format: 'HH:mm'
       pickSeconds: false
       pickDate: false
-    $('.datetimepicker').keydown (e)-> e.preventDefault()
+#    $('.datetimepicker').keydown (e)-> e.preventDefault()

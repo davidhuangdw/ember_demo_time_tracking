@@ -1,12 +1,12 @@
 h2
-  | Edit Activity
+  | Edit
   span.pull-right
-    = if isDirty
-      button.btn.btn-success.btn-sm click=save
-        .fa.fa-save
-    button.btn.btn-danger.btn-sm click=delete
-      .fa.fa-trash-o
+    /= if fields.isDirty
+    button.btn.btn-success.btn-sm click=update
+      .fa.fa-pencil-square.bigger-font
     button.btn.btn-info.btn-sm click=cancel
-      .fa.fa-rotate-left
+      .fa.fa-rotate-left.bigger-font
 
 = view 'activity.form'
+button.btn.btn-danger.btn-sm.pull-right click=delete
+  .fa.fa-trash-o.bigger-font

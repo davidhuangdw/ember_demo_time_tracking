@@ -1,5 +1,5 @@
 h2
-  | New Activity
+  | New
   span.pull-right
     button.btn.btn-success.btn-sm click=create
       .fa.fa-check

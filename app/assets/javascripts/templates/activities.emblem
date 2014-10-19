@@ -14,16 +14,15 @@
         th Title
         th Drtn
         th Begin
+        th End
         th Detail
-        th Edit
       each itemController='activity'
         tr
-          td
-            = title
+          td= link-to 'activity' this | #{title}
           td= durationTime
           td= beginTime
-          td
-            = details
+          td= endTime
+          td= shortDesc
           td
             =link-to 'activity' this class='trans-btn'
               .fa.fa-pencil-square.larger-font
