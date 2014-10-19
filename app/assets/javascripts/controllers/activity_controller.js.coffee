@@ -54,10 +54,11 @@ Track.ActivityController = Ember.ObjectController.extend
         ,
           (error) => @set('errorMessage', error.message)
     delete: ->
-      @get('model').deleteRecord()
-      @get('model').save().then =>
-        @get('controllers.activities.model').removeObject(@get('model'))
-        @transitionToRoute 'activities'
+      if confirm("Are you sure to delete it?")
+        @get('model').deleteRecord()
+        @get('model').save().then =>
+          @get('controllers.activities.model').removeObject(@get('model'))
+          @transitionToRoute 'activities'
     create: ->
       @store.createRecord('activity', activity_from_fields @get('fields'))
       .save().then (record)=>

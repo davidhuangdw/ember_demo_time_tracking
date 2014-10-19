@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :activities do
     collection do
       get ':year/:month/:day' => "activities#for_day"

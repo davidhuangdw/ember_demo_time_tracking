@@ -7,9 +7,9 @@
           .fa.fa-anchor.bigger-font
         button.btn.btn-warning click="go_prev_day"
           .fa.fa-arrow-circle-left.bigger-font
-        button.btn.btn-warning click="go_next_day"
+        button.btn.btn-warning click=go_next_day
           .fa.fa-arrow-circle-right.bigger-font
-    table.table.table-stripe
+    table.table.table-hover
       tr
         th Title
         th Drtn
