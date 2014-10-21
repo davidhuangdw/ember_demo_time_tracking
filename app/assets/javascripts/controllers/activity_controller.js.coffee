@@ -43,6 +43,8 @@ Track.ActivityController = Ember.ObjectController.extend
   needs: ['types','activities']
   errorMessage: null
   shortDesc: (-> shortenDescription @get('description')).property('description')
+  confirmId: (->"delete-"+@get('id')).property('id')
+  showConfirm: false
 
   actions:
     cancel: -> @transitionToRoute 'activities'
@@ -57,8 +59,8 @@ Track.ActivityController = Ember.ObjectController.extend
       @get('model').deleteRecord()
       @get('model').save().then =>
         @get('controllers.activities.model').removeObject(@get('model'))
+        @set 'closeConfirm', true
         @transitionToRoute 'activities'
-        @set 'showDeleteConform', false
     create: ->
       @store.createRecord('activity', activity_from_fields @get('fields'))
       .save().then (record)=>
@@ -68,8 +70,8 @@ Track.ActivityController = Ember.ObjectController.extend
         ,
           (error) => @set('errorMessage', error.message)
     confirmDelete: ->
-      @send('delete') if confirm("Are you sure to delete?")
-    confirm: ->
-      @set 'closeConfirm', true
-      @send('delete')
+      @set 'showConfirm', true
+#      @send('delete') if confirm("Are you sure to delete?")
+#    confirm: ->
+#      @send('delete')
 

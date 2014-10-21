@@ -3,6 +3,7 @@ urlForDate = (date)->
 
 
 Track.ActivitiesController = Ember.ArrayController.extend
+  itemController: 'activity'
   sortProperties: ['beginAt']
   sortAscending: false
 

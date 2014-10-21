@@ -9,8 +9,5 @@ Track.Router.map ->
     @resource 'activity', path:'/activity/:id'
   @resource 'types', ->
     @route 'new', path: 'new'
-    @resource 'type', path:'/types/:id', ->
-      @route 'edit'
-
-  # @resource('posts')
+    @resource 'type', path:'/types/:id'
 

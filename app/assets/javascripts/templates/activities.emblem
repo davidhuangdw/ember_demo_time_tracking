@@ -16,7 +16,8 @@
         th Begin
         th End
         th Detail
-      each itemController='activity'
+        th style="min-width: 5em;" Edit
+      each
         tr
           td= link-to 'activity' this | #{title}
           td= durationTime
@@ -28,5 +29,7 @@
               .fa.fa-pencil-square.larger-font
             a href='#' click=confirmDelete class="danger-font trans-btn"
               .fa.fa-trash.larger-font
+    each
+      = view 'activity.deleteConfirm' cf=confirmId
   .col-sm-4
     outlet

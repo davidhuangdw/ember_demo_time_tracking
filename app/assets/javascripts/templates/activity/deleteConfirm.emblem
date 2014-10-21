@@ -1,0 +1,10 @@
+= em-modal configName='bs' id=view.cf open-if=showConfirm
+  = em-modal-title
+    = em-modal-toggler class='close' | x
+    h3.modal-title Are you sure to delete it?
+  = em-modal-body
+    h4= title
+    p= description
+  = em-modal-footer
+    = em-modal-toggler class='btn btn-default' | Close
+    button.btn.btn-danger click=delete Delete

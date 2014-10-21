@@ -8,19 +8,7 @@ h2
       .fa.fa-rotate-left.bigger-font
 
 = view 'activity.form'
-
-= em-modal configName='bs' id='delete' close-if=closeConfirm
-  = em-modal-title
-    = em-modal-toggler class='close' | x
-    h3.modal-title Are you sure to delete it?
-  = em-modal-body
-    h4= title
-    p= description
-  = em-modal-footer
-    = em-modal-toggler class='btn btn-default' | Close
-    button.btn.btn-danger click=delete Delete
+= view 'activity.deleteConfirm' cf='delete'
 = em-modal-toggler modal-id='delete' class='btn btn-danger pull-right'
   .fa.fa-trash-o.bigger-font
 
-/button.btn.btn-danger.btn-sm.pull-right click=delete
-/  .fa.fa-trash-o.bigger-font
