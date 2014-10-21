@@ -143,6 +143,18 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
+    rails-assets-ember (1.5.1)
+      rails-assets-handlebars (>= 1.0.0, < 2.0.0)
+      rails-assets-jquery (>= 1.7.0, <= 2.1.0)
+    rails-assets-ember-components (0.2.0)
+      rails-assets-ember (>= 1.5.1, < 2)
+      rails-assets-ember-utils (~> 0.1.0)
+      rails-assets-ic-styled (~> 1.1.6)
+    rails-assets-ember-utils (0.1.0)
+    rails-assets-handlebars (1.3.0)
+    rails-assets-ic-styled (1.1.7)
+      rails-assets-ember (>= 1.4.0, <= 1.5.1)
+    rails-assets-jquery (2.1.0)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -211,6 +223,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 4.1.6)
+  rails-assets-ember-components
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple_form (~> 3.1.0rc1)

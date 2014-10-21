@@ -7,6 +7,8 @@
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-utils
+#= require ember-components
 #= require_self
 #= require track
 

@@ -49,6 +49,8 @@ group :development do
   gem 'pry-doc'
 end
 
+gem 'rails-assets-ember-components'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
