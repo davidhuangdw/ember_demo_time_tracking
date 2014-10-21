@@ -26,6 +26,7 @@ activity_from_fields = (f) ->
   {
     title: f.title
     description: f.description
+    type: f.type
     beginAt: beginAt
     endAt: endAt
   }
@@ -40,7 +41,7 @@ update_model = (model,attributes) ->
 
 
 Track.ActivityController = Ember.ObjectController.extend
-  needs: ['types','activities']
+  needs: ['application','activities']
   errorMessage: null
   shortDesc: (-> shortenDescription @get('description')).property('description')
   confirmId: (->"delete-"+@get('id')).property('id')
@@ -56,8 +57,7 @@ Track.ActivityController = Ember.ObjectController.extend
         ,
           (error) => @set('errorMessage', error.message)
     delete: ->
-      @get('model').deleteRecord()
-      @get('model').save().then =>
+      @get('model').destroyRecord().then =>
         @get('controllers.activities.model').removeObject(@get('model'))
         @set 'closeConfirm', true
         @transitionToRoute 'activities'
@@ -71,6 +71,8 @@ Track.ActivityController = Ember.ObjectController.extend
           (error) => @set('errorMessage', error.message)
     confirmDelete: ->
       @set 'showConfirm', true
+    showType: ->
+      alert(@get('fields.type'))
 #      @send('delete') if confirm("Are you sure to delete?")
 #    confirm: ->
 #      @send('delete')

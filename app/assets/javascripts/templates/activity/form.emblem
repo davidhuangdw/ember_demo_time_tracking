@@ -8,6 +8,11 @@ if errorMessage
 
 .form-group
   .input-group
+    span.input-group-addon Type
+    = view Ember.Select content=controllers.application.types optionValuePath='content' optionLabelPath='content.name' prompt='no type' value=fields.type class="form-control"
+
+.form-group
+  .input-group
     span.input-group-addon Begin
     = input type='text' value=fields.beginTime  class="form-control datetimepicker"
     span.input-group-addon Dure

@@ -12,18 +12,20 @@
     table.table.table-hover
       tr
         th Title
-        th Drtn
         th Begin
         th End
         th Detail
+        th Type
+        th Drtn
         th style="min-width: 5em;" Edit
       each
         tr
           td= link-to 'activity' this | #{title}
-          td= durationTime
           td= beginTime
           td= endTime
           td= shortDesc
+          td= type.name
+          td= durationTime
           td
             =link-to 'activity' this class='trans-btn'
               .fa.fa-pencil-square.larger-font
