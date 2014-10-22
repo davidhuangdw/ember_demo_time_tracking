@@ -1,2 +1,11 @@
 h2
-  =link-to 'activities.new' class="btn btn-primary" | new
+  =link-to 'activities.new' class="btn btn-primary" | new activity
+
+table.table-striped.table
+  tr
+    th Type
+    th Duration
+  = each controller.reports
+    tr
+      td= type.name
+      td= durationTime

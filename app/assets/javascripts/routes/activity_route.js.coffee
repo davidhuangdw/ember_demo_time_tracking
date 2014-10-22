@@ -4,7 +4,7 @@ fields_from_activity = (a) ->
   date: a.get('date')
   beginTime: a.get('beginTime')
   durationTime: a.get('durationTime')
-  type: a.get('type.content')
+  type: a.get('type')
 
 
 Track.ActivityRoute = Ember.Route.extend

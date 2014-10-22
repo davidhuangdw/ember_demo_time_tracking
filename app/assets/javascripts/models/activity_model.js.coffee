@@ -18,7 +18,7 @@ Track.Activity = DS.Model.extend
   beginAt: DS.attr 'date'
   endAt: DS.attr 'date'
   description: DS.attr 'string'
-  type: DS.belongsTo 'type',async:true
+  type: DS.belongsTo 'type',async:false
 
   date: Em.computed.alias('beginAt')
   beginTime: (-> showTime @get('beginAt')).property('beginAt')
