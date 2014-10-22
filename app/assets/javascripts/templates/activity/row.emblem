@@ -1,0 +1,11 @@
+td= link-to 'activity' this | #{title}
+td= beginTime
+td= endTime
+td= shortDesc
+td= type.name
+td= durationTime
+td
+  =link-to 'activity' this class='trans-btn'
+    .fa.fa-pencil-square.larger-font
+  a href='#' click=confirmDelete class="danger-font trans-btn"
+    .fa.fa-trash.larger-font

@@ -1,13 +1,15 @@
 h2
   | Edit
+  =if isSaving
+    h3 isSaving
   span.pull-right
-    button.btn.btn-success.btn-sm click=update
+    button.btn.btn-success.btn-sm click=update class="isSaving:disabled"
       .fa.fa-pencil-square.bigger-font
-    =link-to 'activities' tagName='button' class='btn btn-info btn-sm'
+    =link-to 'activities' tagName='button' class='btn btn-info btn-sm isSaving:disabled'
       .fa.fa-rotate-left.bigger-font
 
 = view 'activity.form'
 = view 'activity.deleteConfirm' cf='delete'
-= em-modal-toggler modal-id='delete' class='btn btn-danger pull-right'
+= em-modal-toggler modal-id='delete' class='btn btn-danger pull-right isSaving:disabled'
   .fa.fa-trash-o.bigger-font
 
