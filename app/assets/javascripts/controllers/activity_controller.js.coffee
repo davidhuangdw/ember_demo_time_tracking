@@ -48,7 +48,6 @@ Track.ActivityController = Ember.ObjectController.extend
   showConfirm: false
 
   actions:
-    cancel: -> @transitionToRoute 'activities'
     update: ->
       update_model @get('model'), activity_from_fields @get('fields')
       @get('model').save().then =>
@@ -71,9 +70,4 @@ Track.ActivityController = Ember.ObjectController.extend
           (error) => @set('errorMessage', error.message)
     confirmDelete: ->
       @set 'showConfirm', true
-    showType: ->
-      alert(@get('fields.type'))
-#      @send('delete') if confirm("Are you sure to delete?")
-#    confirm: ->
-#      @send('delete')
 

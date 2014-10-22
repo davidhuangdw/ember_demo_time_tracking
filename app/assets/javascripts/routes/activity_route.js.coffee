@@ -8,7 +8,8 @@ fields_from_activity = (a) ->
 
 
 Track.ActivityRoute = Ember.Route.extend
-  model: (params) -> @modelFor('activities').find params.id
+  model: (params) ->
+    @store.find 'activity', params.activity_id
   setupController: (controller, model) ->
     @_super(controller,model)
     controller.set 'fields', fields_from_activity(model)

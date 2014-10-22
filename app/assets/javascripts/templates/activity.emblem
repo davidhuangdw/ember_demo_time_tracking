@@ -1,10 +1,9 @@
 h2
   | Edit
   span.pull-right
-    /= if fields.isDirty
     button.btn.btn-success.btn-sm click=update
       .fa.fa-pencil-square.bigger-font
-    button.btn.btn-info.btn-sm click=cancel
+    =link-to 'activities' tagName='button' class='btn btn-info btn-sm'
       .fa.fa-rotate-left.bigger-font
 
 = view 'activity.form'
