@@ -54,7 +54,9 @@ Track.ActivityController = Ember.ObjectController.extend
 
     update: ->
       update_model @get('model'), activity_from_fields @get('fields')
-      @send 'tryFinish', @get('model').save()
+      @send 'tryFinish',@get('model').save().catch (error)=>
+        @get('model').rollback()
+        throw error
 
     delete: ->
       promise = @get('model').destroyRecord().then =>
