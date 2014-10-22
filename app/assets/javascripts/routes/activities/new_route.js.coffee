@@ -6,11 +6,15 @@ withCurrentTime = (dateTime)->
 Track.ActivitiesNewRoute = Ember.Route.extend
   controllerName: 'activity'
   setupController: (controller, model)->
-    @_super(controller,model)
-    controller.set 'fields',
-      title: ''
-      date: @controllerFor('activities').get('date')
-      beginTime: moment().format("HH:mm")
-      durationTime: "00:15"
-      description: ''
+#    @_super(controller,model)
+    controller.setProperties
+      model:model
+      errorMessage: null
+      showConfirm: false
+      'fields':
+        title: ''
+        date: @controllerFor('activities').get('date')
+        beginTime: moment().format("HH:mm")
+        durationTime: "00:15"
+        description: ''
 

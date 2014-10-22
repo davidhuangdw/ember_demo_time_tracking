@@ -12,4 +12,8 @@ Track.ActivityRoute = Ember.Route.extend
     @store.find 'activity', params.activity_id
   setupController: (controller, model) ->
     @_super(controller,model)
-    controller.set 'fields', fields_from_activity(model)
+    controller.setProperties
+      model: model
+      errorMessage: null
+      showConfirm: false
+      'fields': fields_from_activity(model)

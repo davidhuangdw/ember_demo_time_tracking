@@ -42,32 +42,30 @@ update_model = (model,attributes) ->
 
 Track.ActivityController = Ember.ObjectController.extend
   needs: ['application','activities']
-  errorMessage: null
   shortDesc: (-> shortenDescription @get('description')).property('description')
   confirmId: (->"delete-"+@get('id')).property('id')
-  showConfirm: false
 
   actions:
+    tryFinish: (promise) ->
+      promise.then =>
+          @transitionToRoute 'activities'
+        .catch (error)=>
+          @set('errorMessage', error.message)
+
     update: ->
       update_model @get('model'), activity_from_fields @get('fields')
-      @get('model').save().then =>
-          @set('errorMessage', null)
-          @transitionToRoute 'activities'
-        ,
-          (error) => @set('errorMessage', error.message)
+      @send 'tryFinish', @get('model').save()
+
     delete: ->
-      @get('model').destroyRecord().then =>
+      promise = @get('model').destroyRecord().then =>
         @get('controllers.activities.model').removeObject(@get('model'))
-        @set 'closeConfirm', true
-        @transitionToRoute 'activities'
+      @send 'tryFinish', promise
+
     create: ->
-      @store.createRecord('activity', activity_from_fields @get('fields'))
-      .save().then (record)=>
-          @get('controllers.activities.model').addObject(record)
-          @set('errorMessage', null)
-          @transitionToRoute 'activities'
-        ,
-          (error) => @set('errorMessage', error.message)
+      promise = @store.createRecord('activity', activity_from_fields @get('fields'))
+        .save().then (record)=>@get('controllers.activities.model').addObject(record)
+      @send 'tryFinish', promise
+
     confirmDelete: ->
       @set 'showConfirm', true
 
