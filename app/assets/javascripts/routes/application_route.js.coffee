@@ -1,4 +1,12 @@
 Track.ApplicationRoute = Ember.Route.extend
-  setupController: (controller,model)->
-    @_super(controller, model)
-    controller.set 'types',@store.findAll('type')
+  model: ->
+    Ember.RSVP.hash
+      types: @store.findAll('type')
+      cached: Ember.Object.create()
+
+#  setupController: (controller,model)->
+#    console.log('setup controller')
+#    @_super(controller, model)
+#    controller.setProperties
+#      types: @store.findAll('type')
+#      cached: Ember.Object.create()
