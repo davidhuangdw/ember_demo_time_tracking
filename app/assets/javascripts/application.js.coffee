@@ -9,6 +9,7 @@
 #= require ember-data
 #= require ember-utils
 #= require ember-components
+#= require Chart
 #= require_self
 #= require track
 

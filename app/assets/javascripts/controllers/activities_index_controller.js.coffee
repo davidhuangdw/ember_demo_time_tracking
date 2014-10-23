@@ -10,7 +10,7 @@ total_duration = (acts,type) ->
   acts.map (act) ->
     if act.get('type') == type
       sum += act.get('duration')
-  showDuration sum
+  sum
 
 
 Track.ActivitiesIndexController = Ember.Controller.extend
@@ -18,8 +18,19 @@ Track.ActivitiesIndexController = Ember.Controller.extend
   reports: (->
     acts = @get('controllers.activities')
     @get('controllers.application.types').map (type)->
-      type: type
-      durationTime: total_duration(acts, type)
+      duration = total_duration(acts, type)
+      {
+        type: type
+        duration: duration
+        durationTime: showDuration(duration)
+      }
   ).property('controllers.application.types',
     'controllers.activities.@each.type',
     'controllers.activities.@each.duration')
+  chartData:(->
+    @get('reports').map (rep)->
+      value: rep.duration/60000
+      color: rep.type.get('color')
+      label: rep.type.get('name')
+    .toArray()
+  ).property('reports')

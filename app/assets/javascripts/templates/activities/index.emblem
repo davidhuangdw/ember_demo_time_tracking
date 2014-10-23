@@ -9,3 +9,6 @@ table.table-striped.table
     tr
       td= type.name
       td= durationTime
+
+canvas id='myChart' width='200' height='200'
+

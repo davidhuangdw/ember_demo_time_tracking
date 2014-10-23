@@ -1,5 +1,5 @@
 Track.TypesRoute = Ember.Route.extend
-  model: -> @store.findAll('type')
+  model: -> @store.find('type')
 
 Track.TypeRoute = Ember.Route.extend
   model: (params) -> @store.find('type', params.id)

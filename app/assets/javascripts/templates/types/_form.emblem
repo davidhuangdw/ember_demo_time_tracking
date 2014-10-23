@@ -9,4 +9,4 @@ if errorMessage
 .form-group
   .input-group
     span.input-group-addon Color
-    = input value=fields.beginTime  class="form-control"
+    = input value=color class="form-control"
