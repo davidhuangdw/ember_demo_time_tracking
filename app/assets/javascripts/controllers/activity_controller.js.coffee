@@ -45,28 +45,34 @@ Track.ActivityController = Ember.ObjectController.extend
   shortDesc: (-> shortenDescription @get('description')).property('description')
   confirmId: (->"delete-"+@get('id')).property('id')
 
-  actions:
-    tryFinish: (promise) ->
-      promise.then =>
-          @transitionToRoute 'activities'
-        .catch (error)=>
-          @set('errorMessage', error.message)
+  tryFinish: (promise) ->
+    console.log @store.all('activity').get('length')
+    promise.then =>
+      @transitionToRoute 'activities'
+    .catch (error)=>
+      @set('errorMessage', error.message)
 
+  actions:
     update: ->
       update_model @get('model'), activity_from_fields @get('fields')
-      @send 'tryFinish',@get('model').save().catch (error)=>
+      promise = @get('model').save().catch (error)=>
         @get('model').rollback()
         throw error
+      @tryFinish promise
 
     delete: ->
       promise = @get('model').destroyRecord().then =>
         @get('controllers.activities.model').removeObject(@get('model'))
-      @send 'tryFinish', promise
+      @tryFinish promise
 
     create: ->
-      promise = @store.createRecord('activity', activity_from_fields @get('fields'))
-        .save().then (record)=>@get('controllers.activities.model').addObject(record)
-      @send 'tryFinish', promise
+      new_record = @store.createRecord('activity', activity_from_fields @get('fields'))
+      promise = new_record.save().then (record)=>
+          @get('controllers.activities.model').addObject(record)
+        .catch (error)=>
+          new_record.deleteRecord()
+          throw error
+      @tryFinish promise
 
     confirmDelete: ->
       @set 'showConfirm', true
