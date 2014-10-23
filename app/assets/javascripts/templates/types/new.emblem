@@ -3,8 +3,7 @@ h2
   span.pull-right
     button.btn.btn-success.btn-sm click=save
       .fa.fa-check
-    /button.btn.btn-danger.btn-sm click=cancel
-    = link-to 'activities' tagName='button' class='btn btn-danger btn-sm'
+    button.btn.btn-danger.btn-sm click=cancel
       .fa.fa-trash-o
 
 = partial 'types/form'

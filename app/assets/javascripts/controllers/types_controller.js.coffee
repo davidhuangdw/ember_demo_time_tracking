@@ -5,19 +5,22 @@ action_for = (onRecord, onArray) ->
 
 Track.TypeController = Ember.ObjectController.extend
   needs: ['types']
-  errorMessage: null
+  errorMessage: (->null).property()
+  transBack: ->
+    @transitionToRoute 'types.index'
+
   actions:
-    cancel: -> @transitionToRoute 'types'
+    cancel: ->
+      @get('model').deleteRecord()
+      @transBack()
     save: -> @get('model').save().then =>
-        @set('errorMessage', null)
         @get('controllers.types.model').addObject @get('model')
-        @transitionToRoute 'types'
-      , (error) => @set('errorMessage', error.message)
+        @transBack()
+      , (error) => @set 'errorMessage', error.message
     delete: ->
       if confirm("Are you sure to delete it?")
+        @get('controllers.types.model').removeObject @get('model')
         @get('model').destroyRecord().then =>
-            @set('errorMessage', null)
-            @get('controllers.types.model').removeObject @get('model')
-            @transitionToRoute 'types'
-          , (error) => @set('errorMessage', error.message)
+            @transBack()
+          , (error) => @set 'errorMessage', error.message
 

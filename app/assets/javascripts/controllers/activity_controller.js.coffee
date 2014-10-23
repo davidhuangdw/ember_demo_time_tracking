@@ -44,6 +44,8 @@ Track.ActivityController = Ember.ObjectController.extend
   needs: ['application','activities']
   shortDesc: (-> shortenDescription @get('description')).property('description')
   confirmId: (->"delete-"+@get('id')).property('id')
+  errorMessage: (->null).property()
+  showConfirm: (->false).property()
 
   tryFinish: (promise) ->
     promise.then =>
@@ -60,9 +62,8 @@ Track.ActivityController = Ember.ObjectController.extend
       @tryFinish promise
 
     delete: ->
-      promise = @get('model').destroyRecord().then =>
-        @get('controllers.activities.model').removeObject(@get('model'))
-      @tryFinish promise
+      @get('controllers.activities.model').removeObject(@get('model'))
+      @tryFinish @get('model').destroyRecord()
 
     create: ->
       new_record = @store.createRecord('activity', activity_from_fields @get('fields'))
