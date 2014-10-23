@@ -46,7 +46,6 @@ Track.ActivityController = Ember.ObjectController.extend
   confirmId: (->"delete-"+@get('id')).property('id')
 
   tryFinish: (promise) ->
-    console.log @store.all('activity').get('length')
     promise.then =>
       @transitionToRoute 'activities'
     .catch (error)=>
