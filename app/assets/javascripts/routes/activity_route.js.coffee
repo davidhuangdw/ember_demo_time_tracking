@@ -3,7 +3,7 @@ fields_from_activity = (a) ->
   description: a.get('description')
   date: a.get('date')
   beginTime: a.get('beginTime')
-  durationTime: a.get('durationTime')
+  endTime: a.get('endTime')
   type: a.get('type')
 
 

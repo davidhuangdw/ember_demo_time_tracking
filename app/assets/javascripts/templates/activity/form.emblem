@@ -15,8 +15,8 @@ if errorMessage
   .input-group
     span.input-group-addon Begin
     = input type='text' value=fields.beginTime  class="form-control datetimepicker"
-    span.input-group-addon Dure
-    = input type='text' value=fields.durationTime  class="form-control datetimepicker"
+    span.input-group-addon End
+    = input type='text' value=fields.endTime  class="form-control datetimepicker"
 
 .form-group
   .control-label Description:

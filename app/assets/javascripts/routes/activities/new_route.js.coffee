@@ -15,6 +15,6 @@ Track.ActivitiesNewRoute = Ember.Route.extend
         title: ''
         date: @controllerFor('activities').get('date')
         beginTime: moment().format("HH:mm")
-        durationTime: "00:15"
+        endTime: moment().format("HH:mm")
         description: ''
 

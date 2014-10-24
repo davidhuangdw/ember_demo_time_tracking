@@ -1,4 +1,3 @@
-# for more details see: http://emberjs.com/guides/models/defining-models/
 parseTime = (str)->
   [minute, hour] = str.split(':').reverse().map((num)-> parseInt(num)||0)
   [hour,minute]
@@ -7,13 +6,7 @@ parseDate = (old_date, str) ->
   [hour,minute] = parseTime(str)
   moment(old_date).hour(hour).minute(minute).toDate()
 
-addDuration= (fr,duration) ->
-  moment(fr).add(duration).toDate()
-
-parseDuration = (str) ->
-  [hour,minute] = parseTime(str)
-  moment.duration(hour,'hour').
-    add(minute,'minute').asMilliseconds()
+add_one_day= (date) -> moment(date).add(1,'day').toDate()
 
 shortenDescription = (desc) ->
   limit=100
@@ -22,7 +15,8 @@ shortenDescription = (desc) ->
 
 activity_from_fields = (f) ->
   beginAt = parseDate f.date,f.beginTime
-  endAt = addDuration beginAt, parseDuration(f.durationTime)
+  endAt = parseDate f.date,f.endTime
+  endAt = add_one_day(endAt) if endAt < beginAt
   {
     title: f.title
     description: f.description
