@@ -13,10 +13,14 @@ if errorMessage
 
 .form-group
   .input-group
-    span.input-group-addon Begin
-    = input type='text' value=fields.beginTime  class="form-control datetimepicker"
-    span.input-group-addon End
-    = input type='text' value=fields.endTime  class="form-control datetimepicker"
+    span.input-group-addon Fr
+    = input type='text' value=fields.beginTime  class="form-control" insert-newline='setDuration'
+    span.input-group-addon To
+    = input type='text' value=fields.endTime  class="form-control" insert-newline='setDuration'
+.form-group
+  .input-group
+    span.input-group-addon Duration
+    = input type='text' value=durationField  insert-newline='setByDuration' class="form-control"
 
 .form-group
   .control-label Description:

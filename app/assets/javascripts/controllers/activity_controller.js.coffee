@@ -1,6 +1,27 @@
+twoDigit = (num) ->
+  if 0 <= num <10 then "0#{num}" else num
+
 parseTime = (str)->
   [minute, hour] = str.split(':').reverse().map((num)-> parseInt(num)||0)
   [hour,minute]
+
+to_minutes = (str) ->
+  [hour,minutes] = parseTime(str)
+  hour*60 + minutes
+
+div = (x, d) -> if d>0 then Math.floor x/d else 0
+
+minutes_to_time = (m) -> "#{twoDigit div m,60}:#{twoDigit m%60}"
+
+subtract = (to, fr) ->
+  return null unless to && fr
+  [fr,to] = [fr,to].map(to_minutes)
+  to += 24*60 if to < fr
+  minutes_to_time(to-fr)
+
+add_time = (a, b) ->
+  [a,b] = [a,b].map(to_minutes)
+  minutes_to_time (a+b)%(24*60)
 
 parseDate = (old_date, str) ->
   [hour,minute] = parseTime(str)
@@ -40,6 +61,9 @@ Track.ActivityController = Ember.ObjectController.extend
   confirmId: (->"delete-"+@get('id')).property('id')
   errorMessage: (->null).property()
   showConfirm: (->false).property()
+  fields:(->{}).property()
+  getDuration: -> subtract(@get('fields.endTime'), @get('fields.beginTime'))
+  durationField: (->@getDuration() ).property('fields.endTime', 'fields.beginTime')
 
   tryFinish: (promise) ->
     promise.then =>
@@ -71,3 +95,8 @@ Track.ActivityController = Ember.ObjectController.extend
     confirmDelete: ->
       @set 'showConfirm', true
 
+    setByDuration: ->
+      du = @get('durationField')
+      @set('fields.endTime',
+        add_time(@get('fields.beginTime'), du)) if !!du
+    setDuration: -> @set 'durationField',@getDuration()

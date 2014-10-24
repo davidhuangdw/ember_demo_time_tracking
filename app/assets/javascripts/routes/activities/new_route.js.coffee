@@ -11,7 +11,8 @@ Track.ActivitiesNewRoute = Ember.Route.extend
       model:model
       errorMessage: null
       showConfirm: false
-      'fields':
+      durationField: '00:00'
+      fields:
         title: ''
         date: @controllerFor('activities').get('date')
         beginTime: moment().format("HH:mm")
