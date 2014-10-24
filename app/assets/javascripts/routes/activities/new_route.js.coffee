@@ -11,6 +11,7 @@ Track.ActivitiesNewRoute = Ember.Route.extend
       model:model
       errorMessage: null
       showConfirm: false
+      inProcess: false
       durationField: '00:00'
       fields:
         title: ''

@@ -16,5 +16,6 @@ Track.ActivityRoute = Ember.Route.extend
       model: model
       errorMessage: null
       showConfirm: false
-      'fields': fields_from_activity(model)
+      inProcess: false
+      fields: fields_from_activity(model)
       durationField: model.get('durationTime')

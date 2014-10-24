@@ -10,5 +10,5 @@ table.table-striped.table
       td= type.name
       td= durationTime
 
-canvas id='myChart' width='200' height='200'
+canvas id='myChart' width='160' height='160' style="display:block; margin:0 auto;"
 

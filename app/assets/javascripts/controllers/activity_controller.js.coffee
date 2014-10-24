@@ -62,6 +62,7 @@ Track.ActivityController = Ember.ObjectController.extend
   errorMessage: (->null).property()
   showConfirm: (->false).property()
   fields:(->{}).property()
+  inProcess: (->false).property()
   getDuration: -> subtract(@get('fields.endTime'), @get('fields.beginTime'))
   durationField: (->@getDuration() ).property('fields.endTime', 'fields.beginTime')
 
@@ -70,9 +71,16 @@ Track.ActivityController = Ember.ObjectController.extend
       @transitionToRoute 'activities'
     .catch (error)=>
       @set('errorMessage', error.message)
+      @set 'inProcess', false
+
+  isBusy: ->
+    return true if @get('inProcess')
+    @set 'inProcess', true
+    false
 
   actions:
     update: ->
+      return if @isBusy()
       update_model @get('model'), activity_from_fields @get('fields')
       promise = @get('model').save().catch (error)=>
         @get('model').rollback()
@@ -80,10 +88,12 @@ Track.ActivityController = Ember.ObjectController.extend
       @tryFinish promise
 
     delete: ->
+      return if @isBusy()
       @get('controllers.activities.model').removeObject(@get('model'))
       @tryFinish @get('model').destroyRecord()
 
     create: ->
+      return if @isBusy()
       new_record = @store.createRecord('activity', activity_from_fields @get('fields'))
       promise = new_record.save().then (record)=>
           @get('controllers.activities.model').addObject(record)
