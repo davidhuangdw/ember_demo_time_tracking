@@ -1,7 +1,8 @@
-td= link-to 'activity' this | #{title}
+td style="max-width:6em;"
+  = link-to 'activity' this | #{title}
 td= beginTime
 td= endTime
-td= shortDesc
+td==shortDesc
 td= type.name
 td= durationTime
 td

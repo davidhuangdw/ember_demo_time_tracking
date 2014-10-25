@@ -22,6 +22,11 @@ if errorMessage
     span.input-group-addon Duration
     = input type='text' value=durationField  class="form-control" key-press='setByDuration' focus-out='setByDuration'
 
+
 .form-group
   .control-label Description:
   = textarea value=fields.description class="form-control" rows='6'
+
+/.form-group
+/  .control-label Description Preview:
+/  .well== view.preview

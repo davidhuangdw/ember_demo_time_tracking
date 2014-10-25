@@ -11,6 +11,6 @@ h2
 = view 'activity.deleteConfirm' cf='delete'
 
 =unless inProcess
-  = em-modal-toggler modal-id='delete' class='btn btn-danger pull-right isSaving:disabled'
+  = em-modal-toggler modal-id='delete' class='btn btn-danger pull-right'
     .fa.fa-trash-o.bigger-font
 

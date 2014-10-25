@@ -29,10 +29,17 @@ parseDate = (old_date, str) ->
 
 add_one_day= (date) -> moment(date).add(1,'day').toDate()
 
+short = (desc,limit=100) ->
+  if desc.length>limit then desc[0...limit]+"    ..." else desc
+allow_break = (str, limit_row=4) ->
+  rows = str.trim().split('\n').map( (s)->s+"<br>" )
+  if rows.length>limit_row
+    rows = rows[0...limit_row-1]
+    rows.push("...<br>")
+  rows.join('')
+
 shortenDescription = (desc) ->
-  limit=100
-  desc ||= ''
-  if desc.length>limit then desc[0...limit]+"..." else desc
+  allow_break short(desc || '')
 
 activity_from_fields = (f) ->
   beginAt = parseDate f.date,f.beginTime
@@ -58,6 +65,7 @@ update_model = (model,attributes) ->
 Track.ActivityController = Ember.ObjectController.extend
   needs: ['application','activities']
   shortDesc: (-> shortenDescription @get('description')).property('description')
+  prettyDesc: (-> markdown.toHTML @get('description')).property('description')
   confirmId: (->"delete-"+@get('id')).property('id')
   errorMessage: (->null).property()
   showConfirm: (->false).property()
