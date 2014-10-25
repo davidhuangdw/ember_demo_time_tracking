@@ -1,12 +1,11 @@
 h2
   | New
-  =if isSaving
-    h3 isSaving
   span.pull-right
-    button.btn.btn-success.btn-sm click=create class="isSaving:disabled"
-      .fa.fa-check
-    =link-to 'activities' tagName='button' class='btn btn-danger btn-sm isSaving:disabled'
-      .fa.fa-trash-o
+    =spin-if spinWhen=inProcess
+      button.btn.btn-success.btn-sm click=create
+        .fa.fa-check
+      =link-to 'activities' tagName='button' class='btn btn-danger btn-sm'
+        .fa.fa-trash-o
 
 = view 'activity.form'
 

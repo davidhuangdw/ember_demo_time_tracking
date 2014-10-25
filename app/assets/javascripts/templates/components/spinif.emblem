@@ -1,0 +1,4 @@
+=if spinWhen
+  .fa.fa-spin.fa-spinner class=spinClass
+=else
+  = yield
