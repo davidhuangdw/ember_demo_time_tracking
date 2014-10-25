@@ -97,6 +97,7 @@ Track.ActivityController = Ember.ObjectController.extend
       new_record = @store.createRecord('activity', activity_from_fields @get('fields'))
       promise = new_record.save().then (record)=>
           @get('controllers.activities.model').addObject(record)
+          @set 'model', record    #in order to change 'confirmId'
         .catch (error)=>
           new_record.deleteRecord()
           throw error
