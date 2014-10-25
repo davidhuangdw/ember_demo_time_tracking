@@ -66,13 +66,16 @@ Track.ActivityController = Ember.ObjectController.extend
   needs: ['application','activities']
   shortDesc: (-> shortenDescription @get('description')).property('description')
   prettyDesc: (-> markdown.toHTML @get('description')).property('description')
-  confirmId: (->"delete-"+@get('id')).property('id')
-  errorMessage: (->null).property()
-  showConfirm: (->false).property()
-  fields:(->{}).property()
-  inProcess: (->false).property()
+
   getDuration: -> subtract(@get('fields.endTime'), @get('fields.beginTime'))
   durationField: (->@getDuration() ).property('fields.endTime', 'fields.beginTime')
+  fields:(->{}).property()
+
+  showConfirm: (->false).property()
+  confirmId: (->"delete-"+@get('id')).property('id')
+
+  errorMessage: (->null).property()
+  inProcess: (->false).property()
 
   tryFinish: (promise) ->
     promise.then =>

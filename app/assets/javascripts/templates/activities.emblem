@@ -5,7 +5,7 @@
         = showDate
       span.pull-right
         button.btn.btn-info click="go_today"
-          .fa.fa-anchor.bigger-font
+          .fa.fa-anchor
         button.btn.btn-warning click="go_prev_day"
           .fa.fa-arrow-circle-left.bigger-font
         button.btn.btn-warning click=go_next_day

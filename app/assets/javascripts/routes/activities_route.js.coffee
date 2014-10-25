@@ -26,3 +26,5 @@ Track.ActivitiesRoute = Ember.Route.extend
     controller.setProperties
       model:model
       date:@get('date')
+      hideType: Ember.Object.create()
+      controller.broadcastHide()

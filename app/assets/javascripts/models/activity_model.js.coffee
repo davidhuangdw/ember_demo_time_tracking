@@ -20,6 +20,7 @@ Track.Activity = DS.Model.extend
   description: DS.attr 'string'
   type: DS.belongsTo 'type',async:false
 
+  hideRow: false
   date: Em.computed.alias('beginAt')
   beginTime: (-> showTime @get('beginAt')).property('beginAt')
   endTime: (-> showTime @get('endAt')).property('endAt')

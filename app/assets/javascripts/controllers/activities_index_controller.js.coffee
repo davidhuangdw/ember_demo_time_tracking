@@ -34,3 +34,8 @@ Track.ActivitiesIndexController = Ember.Controller.extend
       label: rep.type.get('name')
     .toArray()
   ).property('reports')
+
+  actions:
+    toggleHide: (type)-> @get('controllers.activities').send 'toggleHide',type.id
+    showOnly: (type)-> @get('controllers.activities').send 'showOnly',type.id
+    showAll: -> @get('controllers.activities').send 'showAll'
