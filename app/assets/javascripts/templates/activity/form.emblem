@@ -14,13 +14,13 @@ if errorMessage
 .form-group
   .input-group
     span.input-group-addon Fr
-    = input type='text' value=fields.beginTime class="form-control" insert-newline='setDuration' focus-out='setDuration'
+    = input type='text' value=fields.beginTime class="form-control" key-press='setDuration'  focus-out='setDuration'
     span.input-group-addon To
-    = input type='text' value=fields.endTime class="form-control" insert-newline='setDuration' focus-out='setDuration'
+    = input type='text' value=fields.endTime class="form-control"  key-press='setDuration' focus-out='setDuration'
 .form-group
   .input-group
     span.input-group-addon Duration
-    = input type='text' value=durationField  insert-newline='setByDuration' focus-out='setByDuration' class="form-control"
+    = input type='text' value=durationField  class="form-control" key-press='setByDuration' focus-out='setByDuration'
 
 .form-group
   .control-label Description:
