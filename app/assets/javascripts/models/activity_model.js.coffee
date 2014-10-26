@@ -1,17 +1,5 @@
 # for more details see: http://emberjs.com/guides/models/defining-models/
-showTime = (date)->
-  moment(date).format("HH:mm")
-
-twoDigit = (num) ->
-  if 0 <= num <10 then "0#{num}" else num
-
-showDuration = (duration) ->
-  du = moment.duration duration
-  "#{twoDigit du.hours()}:#{twoDigit du.minutes()}"
-
-
-
-
+tp = new Track.TimeParser()
 
 Track.Activity = DS.Model.extend
   title: DS.attr 'string'
@@ -20,14 +8,17 @@ Track.Activity = DS.Model.extend
   description: DS.attr 'string'
   type: DS.belongsTo 'type',async:false
 
-  hideRow: false
   date: Em.computed.alias('beginAt')
-  beginTime: (-> showTime @get('beginAt')).property('beginAt')
-  endTime: (-> showTime @get('endAt')).property('endAt')
+  beginTime: (-> tp.date_to_time_str @get('beginAt')).property('beginAt')
+  endTime: (-> tp.date_to_time_str @get('endAt')).property('endAt')
   duration: (->
     @get('endAt')-@get('beginAt')
   ).property('beginAt','endAt')
-  durationTime: (-> showDuration @get('duration')).property('duration')
+  durationTime: (-> tp.duration_to_time_str @get('duration')).property('duration')
+
+  hideRow: false
+  confirmId: (->"delete-"+@get('id')).property('id')
+
 
 
 

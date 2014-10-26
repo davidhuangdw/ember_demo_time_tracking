@@ -1,32 +1,28 @@
-twoDigit = (num) ->
-  if 0 <= num <10 then "0#{num}" else num
-
-showDuration = (duration) ->
-  du = moment.duration duration
-  "#{twoDigit du.hours()}:#{twoDigit du.minutes()}"
-
+tp = new Track.TimeParser()
 total_duration = (acts,type) ->
-  sum = 0
-  acts.map (act) ->
+  acts.reduce ((sum, act) ->
     if act.get('type') == type
       sum += act.get('duration')
-  sum
+    else sum
+  ),0
 
 
 Track.ActivitiesIndexController = Ember.Controller.extend
   needs: ['application','activities']
+  activities: Ember.computed.alias('controllers.activities')
+  types: Ember.computed.alias('controllers.application.types')
+
   reports: (->
-    acts = @get('controllers.activities')
-    @get('controllers.application.types').map (type)->
+    acts = @get('activities')
+    @get('types').map (type)->
       duration = total_duration(acts, type)
       {
         type: type
         duration: duration
-        durationTime: showDuration(duration)
+        durationTime: tp.duration_to_time_str(duration)
       }
-  ).property('controllers.application.types',
-    'controllers.activities.@each.type',
-    'controllers.activities.@each.duration')
+  ).property('types', 'activities.@each.type',
+    'activities.@each.duration')
   chartData:(->
     @get('reports').map (rep)->
       value: rep.duration/60000
@@ -36,6 +32,6 @@ Track.ActivitiesIndexController = Ember.Controller.extend
   ).property('reports')
 
   actions:
-    toggleHide: (type)-> @get('controllers.activities').send 'toggleHide',type.id
-    showOnly: (type)-> @get('controllers.activities').send 'showOnly',type.id
-    showAll: -> @get('controllers.activities').send 'showAll'
+    toggleHide: (type)-> @get('activities').send 'toggleHide',type.id
+    showOnly: (type)-> @get('activities').send 'showOnly',type.id
+    showAll: -> @get('activities').send 'showAll'

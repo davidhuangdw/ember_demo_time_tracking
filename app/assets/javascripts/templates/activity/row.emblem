@@ -1,9 +1,10 @@
 =unless hideRow
-  td style="max-width:6em;"
+  td style="max-width:5.5em;"
     = link-to 'activity' this | #{title}
   td= beginTime
   td= endTime
-  td==shortDesc
+  td
+    short-desc desc=description
   td= type.name
   td= durationTime
   td

@@ -1,8 +1,6 @@
 Track.TypesController = Ember.ArrayController.extend
   errorMessage: null
 
-action_for = (onRecord, onArray) ->
-
 Track.TypeController = Ember.ObjectController.extend
   needs: ['types']
   errorMessage: (->null).property()

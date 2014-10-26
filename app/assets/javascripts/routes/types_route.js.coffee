@@ -4,7 +4,7 @@ setup = (controller, model)->
     errorMessage: null
 
 Track.TypesRoute = Ember.Route.extend
-  model: -> @store.find('type')
+  model: -> @modelFor('application').types
 
 Track.TypeRoute = Ember.Route.extend
   model: (params) -> @store.find('type', params.id)

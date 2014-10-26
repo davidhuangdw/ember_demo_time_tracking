@@ -9,7 +9,7 @@ activity_in_range = (from, to) ->
 
 
 
-Track.ActivitiesRoute = Ember.Route.extend
+Track.ActivitiesRoute = Ember.Route.extend Track.TypeHidable.RouteMixin,
   model: (params)->
     date = moment(year:params.year, month:params.month-1, day:params.day)
     @set('date',date)
@@ -23,8 +23,8 @@ Track.ActivitiesRoute = Ember.Route.extend
       @store.find 'activity', from:from, to:to
 
   setupController: (controller, model) ->
+    @_super(controller,model)
     controller.setProperties
       model:model
       date:@get('date')
-      hideType: Ember.Object.create()
-      controller.broadcastHide()
+
