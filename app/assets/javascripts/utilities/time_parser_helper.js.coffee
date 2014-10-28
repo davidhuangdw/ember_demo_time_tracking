@@ -38,6 +38,6 @@ class TimeParser
 
   duration_to_time_str: (duration) ->
     du = moment.duration duration
-    format_time_str du.hours(),du.minutes()
+    minutes_to_time Math.floor du.asMinutes()
 
 Track.TimeParser = TimeParser

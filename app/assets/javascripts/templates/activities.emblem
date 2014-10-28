@@ -22,6 +22,7 @@
       each
         =view 'activity.row' tagName='tr'
     each
-      = view 'activity.deleteConfirm' cf=confirmId
+      if id
+        = view 'activity.deleteConfirm' cf=confirmId
   .col-sm-4
     outlet

@@ -42,6 +42,7 @@ Track.ActivityController = Ember.ObjectController.extend Track.FieldsInput.CtrlM
       new_record = @store.createRecord('activity', af.activity_from_fields @get('fields'))
       promise = new_record.save().then (record)=>
           @set 'model', record    #in order to change 'confirmId'
+          console.log(record.id)
           @get('controllers.activities.model').addObject(record)
         .catch (error)=>
           new_record.deleteRecord()

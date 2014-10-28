@@ -17,7 +17,11 @@ Track.Activity = DS.Model.extend
   durationTime: (-> tp.duration_to_time_str @get('duration')).property('duration')
 
   hideRow: false
-  confirmId: (->"delete-"+@get('id')).property('id')
+  confirmId: (->
+    res = "delete-"+@get('id')
+    console.log(res)
+    res
+  ).property('id')
 
 
 
