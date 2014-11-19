@@ -8,6 +8,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.6)
       actionpack (= 4.1.6)
@@ -224,6 +225,7 @@ DEPENDENCIES
   puma
   rails (= 4.1.6)
   rails-assets-ember-components
+  rails-assets-ember-utils
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple_form (~> 3.1.0rc1)

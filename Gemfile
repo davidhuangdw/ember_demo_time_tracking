@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+source "https://rails-assets.org"
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -49,6 +51,7 @@ group :development do
   gem 'pry-doc'
 end
 
+gem 'rails-assets-ember-utils'
 gem 'rails-assets-ember-components'
 
 # Use ActiveModel has_secure_password

@@ -1,28 +1,41 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ember + Rails(API server)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### ember refactoring tips:
+
+* overview:
+    * application.model: store global data (or into window globally)
+    * route:
+        * declare model (original model data)
+        * init controller's state (extra state for controller to interative with view)
+    * controller:
+        * declare properties -- for view to refer
+        * provide actions -- for view to trigger
+    * view, component:
+        * common:
+            * add jquery code for elements, by view's hooks
+            * modulize special template display
+            * display special from raw controller's data
+            * receive dynamic display parameters (directly from template)
+            * as a layout to decorate 'template statements'
+        * diff:
+            * if has actions, cannot use component directly
+                * use yield: component as layout
+                * use view
+    * modulize:
+        * put some computed properties from controller into model
+            * those independent and wide-shared-by-many-controllers
+            * those want to be long-lived -- to be used by arrayController
+        * separate view concerns(view decorated data on model's raw data), from controller to view/component
+        * break down fat route, or fat controller:
+            * use mixin to speparate coupled partial code
+
+* controller only responsible
+    * for:
+        * actions -- interact with view
+        * hold data ref -- provide data to view
+    * not for:
+        * data manipulation (decoration for view):
+            * put it into separate component/sub-view
+            * put it inside model -- if want to be used in different controllers
+            * delegate to a dedicated service object/mixin
